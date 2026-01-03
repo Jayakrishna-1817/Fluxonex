@@ -1,0 +1,49 @@
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.cal-cell {
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+}
+
+.cal-cell.past {
+    background: #f3f2f2;
+    color: #706e6b;
+}
+
+.cal-cell.booked {
+    background: #ffeaea;
+    border-color: #ea001e;
+    color: #ea001e;
+    font-weight: 600;
+}
+
+.cal-day {
+    font-size: 0.8rem;
+}
+
+.legend-box {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    border: 1px solid #dddbda;
+    vertical-align: middle;
+}
+
+.legend-box.booked {
+    background: #ffeaea;
+    border-color: #ea001e;
+}
+
+.legend-box.past {
+    background: #f3f2f2;
+}

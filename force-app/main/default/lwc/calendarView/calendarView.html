@@ -1,0 +1,28 @@
+<template>
+    <section class="slds-card slds-p-around_medium">
+        <div class="slds-text-heading_small slds-m-bottom_small">Calendar</div>
+        <template if:true={loading}>
+            <lightning-spinner size="small"></lightning-spinner>
+        </template>
+        <template if:true={months}>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template for:each={months} for:item="m">
+                    <div key={m.label} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <div class="slds-m-bottom_small slds-text-title_caps">{m.label}</div>
+                        <div class="cal-grid">
+                            <template for:each={m.days} for:item="d">
+                                <div key={d.key} class={d.cssClass}>
+                                    <span class="cal-day">{d.day}</span>
+                                </div>
+                            </template>
+                        </div>
+                        <div class="slds-text-color_weak slds-text-body_small slds-m-top_x-small">
+                            <span class="legend-box booked"></span> Booked
+                            <span class="legend-box past slds-m-left_medium"></span> Past
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </section>
+</template>

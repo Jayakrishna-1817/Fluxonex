@@ -1,0 +1,54 @@
+<template>
+    <section class="slds-card slds-p-around_medium">
+        <div class="slds-text-heading_medium slds-m-bottom_small">Speaker Details & Availability</div>
+
+        <template if:false={hasSelection}>
+            <div class="slds-text-body_regular slds-text-color_weak">Select a speaker</div>
+        </template>
+
+        <template if:true={hasSelection}>
+            <template if:true={loading}>
+                <lightning-spinner size="small"></lightning-spinner>
+            </template>
+
+            <template if:true={speaker}>
+                <div class="slds-m-bottom_medium">
+                    <div class="slds-text-heading_small">{speaker.name}</div>
+                    <div class="slds-text-body_small slds-text-color_weak">Speciality: {speaker.speciality}</div>
+                    <div class="slds-m-top_x-small">{speaker.bio}</div>
+                </div>
+            </template>
+
+            <div class="slds-grid slds-gutters slds-wrap slds-m-top_small">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-3">
+                    <lightning-input
+                        type="date"
+                        name="date"
+                        label="Select a Date"
+                        min={minDate}
+                        value={selectedDate}
+                        onchange={handleDateChange}
+                    ></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-top_large">
+                    <lightning-button
+                        variant="brand"
+                        label="Create Assignment"
+                        onclick={handleCreate}
+                        disabled={isCreateDisabled}
+                    ></lightning-button>
+                </div>
+            </div>
+
+            <template if:true={checking}>
+                <div class="slds-m-top_x-small slds-text-color_weak">Checking availability...</div>
+            </template>
+            <template if:true={availabilityMessage}>
+                <div class="slds-m-top_x-small">{availabilityMessage}</div>
+            </template>
+            <div class="slds-m-top_large">
+                <c-calendar-view></c-calendar-view>
+            </div>
+        </template>
+    </section>
+</template>
